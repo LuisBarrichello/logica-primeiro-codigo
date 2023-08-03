@@ -1,4 +1,3 @@
-
 // Em um sistema de vendas é emitido um recibo a cada venda, esse recibo está em formato string com a seguinte estrutura: 
 // nome-do-produto1/valor33.5=cupom5;nome-do-produto2/valor4.99=cupom0;nome-do-produto3/valor10=cupom0;...
 // As vendas são divididas por ; (ponto e virgula)
@@ -10,7 +9,7 @@
 
 // Precisamos formatar essa string para obter uma lista de objetos com a seguinte estrutura: 
 
-/* const listaDaVenda = [
+/* const listaDeProdutosVendidos = [
     { 
         produto: 'Nome do produto formatado', // Nome do produto formatado com a primeira letra maiúscula 
         valor: 99, // Valor do produto
@@ -32,37 +31,52 @@
 const reciboDeVenda = 'régua/valor3=cupom0;lápis/valor0.5=cupom0;mochila/valor50=cupom10;estojo/valor8=cupom0;cola/valor4=cupom0;cola/valor4=cupom0;mochila/valor50=cupom10;lápis/valor0.5=cupom0;cola/valor4=cupom0;lápis/valor0.5=cupom0;mochila/valor50=cupom10;tesoura/valor5=cupom0;caneta/valor1=cupom0;cola/valor4=cupom0;estojo/valor8=cupom0;borracha/valor2=cupom0;caderno/valor15=cupom5;lápis/valor0.5=cupom0;lápis/valor0.5=cupom0;tesoura/valor5=cupom0;'
 
 // Boa sorte =D
+const produtosVendidos = reciboDeVenda.split(';');
+const produtosFiltrados = produtosVendidos.filter((produto) => {
+    return produto !== '';
+})
+const listaDeProdutosVendidos = [];
 
+for (const produto of produtosFiltrados) {
+    const [nomeValor, cupomString] = produto.split('=');
+    const [nome, valorString] = nomeValor.split('/');
+    const valor = parseFloat(valorString.split('valor')[1]);
+    const cupom = parseFloat(cupomString.split('cupom')[1]);
+    
+    const produtosFormatados = {
+        nome: nome.charAt(0).toUpperCase() + nome.slice(1),
+        valor: valor,
+        cupom: cupom,
+        quantidade: 1,
+    };
 
-function FormataVendaDeStringEmObjetos(reciboDeVenda) {
-    const produtosVendidos = reciboDeVenda.split(';');
-    const produtosFormatados = [];
+    const produtoExistente = listaDeProdutosVendidos.findIndex(
+        (item) => item.nome === produtosFormatados.nome && item.valor === produtosFormatados.valor && item.cupom === produtosFormatados.cupom
+    );
 
-    console.clear()
-    console.log(produtosVendidos)
-
-    for (const produto of produtosVendidos) {
-        const [nomeValor, cupom] = produto.split('=');
-        const [nome, valorString] = nomeValor.split('/'); // nome(regua), valor(valor3), cupom(cupom0)
-        // tem valor string vazia, tratar isso antes do for of, filter por exemplo
-        //reduce para somatoria
-        
-        // console.clear()
-        // console.log(produto)
-        // const valor = parseFloat(valorString.split('valor')[1]);
-
-        // console.log(valor); 
-
-        // const produtoFormatado = {
-        //     nome: nome.charAt(0).toUpperCase() + nome.slice(1),
-        //     valor: parseFloat(valor),
-        //     cupom: parseFloat(cupom),
-        //     quantidade: 1,
-        // };
+    if (produtoExistente !== -1) {
+        listaDeProdutosVendidos[produtoExistente].quantidade++;
+    } else {
+        listaDeProdutosVendidos.push(produtosFormatados);
     }
-
-    return produtosFormatados;
 }
 
-const reciboDeVendaFormatado = FormataVendaDeStringEmObjetos(reciboDeVenda);
-console.log(reciboDeVendaFormatado);
+
+let valorTotal = 0;
+let valorTotalDoDesconto = 0;
+let quantidadeDeProdutos = 0;
+
+listaDeProdutosVendidos.forEach((produto) => {
+    valorTotal += produto.valor * produto.quantidade;
+    valorTotalDoDesconto += (produto.valor * (produto.cupom / 100)) * produto.quantidade;
+})
+
+const totais = {
+    valorTotal: valorTotal,
+    valorTotalDoDesconto: valorTotalDoDesconto,
+    valorTotalDosProdutosComDesconto: valorTotal - valorTotalDoDesconto,
+    quantidadeDeProdutos: listaDeProdutosVendidos.length,
+};
+
+console.table(listaDeProdutosVendidos)
+console.table(totais)

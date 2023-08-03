@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body {
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+
+    background-color: #333333;
+    color: white;
+}
+
+form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+input {
+    height: 1.5rem;
+    border-radius: .3rem;
+}
+
+button {
+    color: #090909;
+    padding: 0.5em 1em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    transition: all .3s;
+}
+
+button:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5,
+        inset -4px -4px 12px #ffffff;
+}

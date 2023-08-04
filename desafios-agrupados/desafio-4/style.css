@@ -26,6 +26,14 @@ form {
     gap: .5rem;
 }
 
+label {
+    font-size: 1.3rem;
+}
+
+label span {
+    font-size: .9rem;
+}
+
 input {
     height: 1.5rem;
     border-radius: .3rem;

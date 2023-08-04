@@ -17,4 +17,4 @@ Aqui você encontrará conceitos essenciais e exemplos práticos de Lógica de p
 * [Funções](https://github.com/LuisBarrichello/ada-logica-primeiro-codigo/tree/master/aula04)
 * [Condicionais](https://github.com/LuisBarrichello/ada-logica-primeiro-codigo/tree/master/aula04)
 
-* [Desafios](Colocar link)
+* [Desafios](https://github.com/LuisBarrichello/logica-primeiro-codigo/tree/master/desafios-agrupados)

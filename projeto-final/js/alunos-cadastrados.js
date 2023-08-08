@@ -1,10 +1,10 @@
-export const database = {
+/* export */ const database = {
     turmas: [
-        { codigo: 1, maximo: 7 },
-        { codigo: 2, maximo: 8 },
-        { codigo: 3, maximo: 6 },
-        { codigo: 4, maximo: 5 },
-        { codigo: 5, maximo: 10 }
+        { idTurma: 1, maximo: 7 },
+        { idTurma: 2, maximo: 8 },
+        { idTurma: 3, maximo: 6 },
+        { idTurma: 4, maximo: 5 },
+        { idTurma: 5, maximo: 10 }
     ],
     alunos: [
     {

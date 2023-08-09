@@ -26,11 +26,11 @@ A escola Lógica Sempre precisa de um módulo em seu sistema para gerenciar seus
 - Retornar a lista apenas com alunos inativos
 - Retornar os alunos que estão com a média esperada
 - Relatório completo com os seguintes retornos:
-- Quantidade de alunos
-- Quantidade de turmas
-- Alunos que estão com a média esperada
-- Alunos que estão abaixo da média esperada
-- Retornar alunos com a média calculada
+  - Quantidade de alunos
+  - Quantidade de turmas
+  - Alunos que estão com a média esperada
+  - Alunos que estão abaixo da média esperada
+  - Retornar alunos com a média calculada
 
 ## Informações importantes:
 
@@ -47,7 +47,7 @@ A escola Lógica Sempre precisa de um módulo em seu sistema para gerenciar seus
 - O projeto deverá ser executado no console do navegador
 
 
-## Funcionalidade extra*
+## Funcionalidade extra
 
 Como opcional adicionar a funcionalidade de classificação nos alunos, onde será possível **cadastrar** os alunos com a seguinte classificação: A, B, C ou D. Isso implicará na forma como adicionamos novos alunos seguindo a regra:
 

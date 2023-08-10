@@ -32,17 +32,18 @@ function Turma(idTurma, maximo) {
 function cadastraTurma (idTurma, maximo) {
     try {
         idTurma = prompt('Digita número de identificação da turma: ')
-        if(!idTurma) throw new Error('Identificação da turma não pode ser vazio') 
+        if(!idTurma) throw new Error('Identificação da turma não pode ser vazio')
         
         if(database.turmas.length > 10) {
             throw new Error('Máximo de turmas: 10. Não é possível cadastar')
         }
-        
-        database.turmas.forEach(turma => {
-            if(turma.idTurma === idTurma) {
-                throw new Error('Turma já existente, digite uma turma válida.')
-            }
-        })
+
+        const turmaExistente = database.turmas.find(turma => turma.idTurma === idTurma)
+        if(!turmaExistente) {
+            database.turmas.push(this);
+        } else {
+            throw new Error('Turma já existente, digite uma turma válida.')
+        }
 
         console.log(database.turmas)
 
@@ -50,7 +51,7 @@ function cadastraTurma (idTurma, maximo) {
         if(!maximo) throw new Error('Limite de alunos da turma não pode ser vazio')
 
         maximo = parseInt(maximo);
-            if(isNaN(maximo) ||maximo > 10 || maximo < 5) {
+            if(isNaN(maximo) || maximo > 10 || maximo < 5) {
                 throw new Error('Máximo de alunos: 10; e Mínimo de alunos: 5. Digite valor válido')
             }
     } catch (error) {
@@ -134,14 +135,52 @@ function atualizaDadosDoAluno() {
 
 function mostrarAlunoEspecifico(email) {
     let alunoPesquisado = database.alunos.find(aluno => aluno.email === email)
-
-    console.log(alunoPesquisado)
+    console.table(alunoPesquisado)
 }
 
 function mostraListaDeAlunosCompleta() {
-    
+    console.log(`Lista completa de alunos: `)
+    console.table(database.alunos)
 }
 
 function mostraQuatidadeDeTurmas() {
+    console.log(`A quantidade de turmas existente é: ${database.turmas.length}`)
+}
+
+function calculaMediaDeNotasDoAluno(email) {
+    const aluno = database.alunos.find(aluno => aluno.email === email);
+    const notas = aluno.notas;
+
+    let media = 0;
+    for (let i = 0; i < notas.length; i++) {
+        media += notas[i]
+    }
+
+
+    media = media / notas.length
+    console.log(`A média das notas do aluno ${aluno.nome} é ${media.toFixed(2)}`)
+}
+
+
+function desativaCadastroDoAluno(email) {
+    const aluno = database.alunos.find(aluno => aluno.email === email)
+
+    let status = aluno.ativo === true ? 'ativo' : 'inativo'
+
+    let confirmacaoDeInativar = confirm(`Aluno ${aluno.nome} está ${status}. Deseja inativar o cadastro?`)
+
+    if(confirmacaoDeInativar) {
+        status = 'inativo'
+    }
+
+    console.log(status)
+    alert(`O aluno está: ${status}`)
+}
+
+function mostraListaDeAlunosAtivos() {
+
+}
+
+function mostraListaDeAlunosInativos() {
 
 }

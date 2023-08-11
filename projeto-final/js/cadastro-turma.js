@@ -20,10 +20,8 @@ new Aluno('Camila', 'Lima', 'camila@exemplo.com', 4, '30/09/2001', '1.5, 1.0, 7.
 console.log(database.alunos)
 
 function Turma(idTurma, maximo) {
-    if (!new.target) { // 
-        return new Turma(idTurma, Aluno);
-    };
-    
+    if (!new.target) return new Turma(idTurma, Aluno);
+
     this.idTurma = Number(idTurma);
     this.maximo = Number(maximo);
     database.turmas.push(this);
@@ -31,21 +29,17 @@ function Turma(idTurma, maximo) {
 
 function cadastraTurma (idTurma, maximo) {
     try {
-        idTurma = prompt('Digita número de identificação da turma: ')
-        if(!idTurma) throw new Error('Identificação da turma não pode ser vazio')
+        idTurma = prompt('Digita número de identificação da turma: ');
+        if(!idTurma) throw new Error('Identificação da turma não pode ser vazio');
         
-        if(database.turmas.length > 10) {
-            throw new Error('Máximo de turmas: 10. Não é possível cadastar')
-        }
+        if(database.turmas.length > 10) throw new Error('Máximo de turmas: 10. Não é possível cadastar');
 
-        const turmaExistente = database.turmas.find(turma => turma.idTurma === idTurma)
+        const turmaExistente = database.turmas.find(turma => turma.idTurma === idTurma);
         if(!turmaExistente) {
             database.turmas.push(this);
         } else {
             throw new Error('Turma já existente, digite uma turma válida.')
-        }
-
-        console.log(database.turmas)
+        };
 
         maximo = prompt('Digita o número de alunos máximo por turma: ')
         if(!maximo) throw new Error('Limite de alunos da turma não pode ser vazio')
@@ -58,8 +52,8 @@ function cadastraTurma (idTurma, maximo) {
         alert('Erro: ' + error.message);
     }
 
-    /* const continuarCadastrar = confirm('Deseja cadastrar outra turma?');
-    if(continuarCadastrar) cadastraTurma(); */
+    const continuarCadastrar = confirm('Deseja cadastrar outra turma?');
+    if(continuarCadastrar) cadastraTurma(); 
 
     return new Turma(idTurma, maximo)
 }
@@ -67,18 +61,16 @@ function cadastraTurma (idTurma, maximo) {
 
 
 function Aluno (nome, sobrenome, email, idTurma, nascimento, notas, ativo) {
-    if (!new.target) { // 
-        return new Aluno(nome, sobrenome, email, idTurma, nascimento, notas, ativo);
-    };
+    if (!new.target) return new Aluno(nome, sobrenome, email, idTurma, nascimento, notas, ativo);
 
     this.nome = nome.charAt(0).toUpperCase() + nome.slice(1);
     this.sobrenome = sobrenome.charAt(0).toUpperCase() + sobrenome.slice(1);
     this.email = email.toLowerCase();
-    this.idTurma = Number(idTurma);
+    this.idTurma = parseInt(idTurma);
     this.nascimento = nascimento;
     this.notas = notas.split(',').map( nota => {
         if(nota > 10) throw new Error('Digite um nota válida, até 10');
-        const notasParseNumber = Number(nota)
+        const notasParseNumber = parseFloat(nota)
         return notasParseNumber
     });
     this.ativo = ativo === 'ativo' ? true : false;
@@ -161,9 +153,14 @@ function calculaMediaDeNotasDoAluno(email) {
     }
 
     media = media / notas.length
-    console.log(`A média das notas do aluno ${aluno.nome} é ${media.toFixed(2)}`)
+    
+    return media.toFixed(2);
+}
 
-    return media;
+function mostraMediaDeNotasDoAluno(email) {
+    const aluno = database.alunos.find(aluno => aluno.email === email);
+    
+    console.log(`A média das notas do aluno ${aluno.nome} é ${calculaMediaDeNotasDoAluno(email)}`)
 }
 
 
@@ -203,5 +200,42 @@ function mostraAlunosComMediaEsperada() {
         if(media >= notaMinima) listaAlunosComMediaEsperada.push(aluno)
     }
 
+    console.log(`Alunos com a media igual ou acima do esperado: `)
     console.log(listaAlunosComMediaEsperada);
+
 }
+
+function mostraAlunosComMediaAbaixoDoEsperado() {
+    const alunos = database.alunos;
+    let listaAlunosComMediaAbaixoDoEsperado = [];
+
+    for (const aluno of alunos) {
+        const notaMinima = 6;
+        let media = calculaMediaDeNotasDoAluno(aluno.email)
+
+        if(media < 6) listaAlunosComMediaAbaixoDoEsperado.push(aluno)
+    }
+
+    console.log(`Alunos com a media abaixo do esperado: `);
+    console.log(listaAlunosComMediaAbaixoDoEsperado);
+}
+
+function mostraQuantidadeDeAlunos() {
+    const quantidadeDeAlunos = database.alunos.length;
+
+    console.log(`A quantidade de alunos matriculados é: ${quantidadeDeAlunos}`)
+}
+function mostraRelatorioCompletoDeAlunos() {
+    mostraQuantidadeDeAlunos()
+    mostraQuatidadeDeTurmas()
+    mostraAlunosComMediaEsperada()
+    mostraAlunosComMediaAbaixoDoEsperado()
+}
+
+
+/* Como opcional adicionar a funcionalidade de classificação nos alunos, onde será possível cadastrar os alunos com a seguinte classificação: A, B, C ou D. Isso implicará na forma como adicionamos novos alunos seguindo a regra:
+
+Alunos com classificação A e D não podem estar na mesma turma com alunos com classificação B e C e vise-versa.
+
+Observação: Essa é uma funcionalidade completamente opcional e pode ser adicionada após a realização dos requisitos principais. 
+*/

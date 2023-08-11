@@ -8,14 +8,14 @@ new Turma(2, 8)
 new Turma(3, 6)
 new Turma(4, 5)
 
-new Aluno('João', 'Silva', 'joao@example.com', 2, '15/03/2002', '8.5, 7.2, 9.0', 'ativo')
-new Aluno('Maria', 'Souza', 'maria@example.com', 1, '10/07/2003', '9.8, 8.0, 7.5', 'ativo')
-new Aluno('Pedro', 'Ribeiro', 'pedro@example.com', 3, '05/11/2002', '6.4, 7.8, 8.2', 'ativo')
-new Aluno('Luis', 'Viana', 'luis@example.com', 4, '17/03/2002', '7.4, 8.8, 6.2', 'ativo')
-new Aluno('João', 'Santos', 'joao@example.com', 5, '05/07/2003', '8.5, 7.0, 9.8', 'ativo')
-new Aluno('Maria', 'Oliveira', 'maria@example.com', 4, '20/01/2002', '9.0, 9.5, 8.2', 'inativo')
-new Aluno('Pedro', 'Rodrigues', 'pedro@example.com', 3, '15/11/2002', '7.8, 6.5, 7.0', 'ativo')
-new Aluno('Camila', 'Lima', 'camila@example.com', 4, '30/09/2001', '6.5, 8.0, 7.3', 'ativo')
+new Aluno('João', 'Silva', 'joao@exemplo.com', 2, '15/03/2002', '8.5, 7.2, 9.0', 'ativo')
+new Aluno('Maria', 'Souza', 'maria@exemplo.com', 1, '10/07/2003', '9.8, 8.0, 7.5', 'ativo')
+new Aluno('Pedro', 'Ribeiro', 'pedroribeiro@exemplo.com', 3, '05/11/2002', '6.4, 7.8, 8.2', 'ativo')
+new Aluno('Luis', 'Viana', 'luis@exemplo.com', 4, '17/03/2002', '7.4, 8.8, 6.2', 'ativo')
+new Aluno('João', 'Santos', 'joao@exemplo.com', 5, '05/07/2003', '8.5, 7.0, 9.8', 'ativo')
+new Aluno('Maria', 'Oliveira', 'maria@exemplo.com', 4, '20/01/2002', '9.0, 9.5, 8.2', 'inativo')
+new Aluno('Pedro', 'Rodrigues', 'pedrorodrigues@exemplo.com', 3, '15/11/2002', '1.8, 1.5, 1.0', 'inativo')
+new Aluno('Camila', 'Lima', 'camila@exemplo.com', 4, '30/09/2001', '1.5, 1.0, 7.3', 'inativo')
 
 console.log(database.alunos)
 
@@ -139,12 +139,16 @@ function mostrarAlunoEspecifico(email) {
 }
 
 function mostraListaDeAlunosCompleta() {
+    const listaDeAlunosCompelta = database.alunos;
     console.log(`Lista completa de alunos: `)
-    console.table(database.alunos)
+    console.table(listaDeAlunosCompelta)
 }
 
 function mostraQuatidadeDeTurmas() {
-    console.log(`A quantidade de turmas existente é: ${database.turmas.length}`)
+    const quantidadeDeTurmas = database.turmas.length;
+
+    console.log(`A quantidade de turmas existente é: ${quantidadeDeTurmas}`)
+
 }
 
 function calculaMediaDeNotasDoAluno(email) {
@@ -156,9 +160,10 @@ function calculaMediaDeNotasDoAluno(email) {
         media += notas[i]
     }
 
-
     media = media / notas.length
     console.log(`A média das notas do aluno ${aluno.nome} é ${media.toFixed(2)}`)
+
+    return media;
 }
 
 
@@ -178,9 +183,25 @@ function desativaCadastroDoAluno(email) {
 }
 
 function mostraListaDeAlunosAtivos() {
-
+    let lista = database.alunos.filter(aluno => aluno.ativo === true);
+    console.log("Lista de alunos ativos:", lista);
 }
 
 function mostraListaDeAlunosInativos() {
+    let lista = database.alunos.filter(aluno => aluno.ativo === false);
+    console.log("Lista de alunos ativos:", lista);
+}
 
+function mostraAlunosComMediaEsperada() {
+    const alunos = database.alunos;
+    let listaAlunosComMediaEsperada = [];
+    
+    for (const aluno of alunos) {
+        const notaMinima = 6;
+        let media = calculaMediaDeNotasDoAluno(aluno.email);
+
+        if(media >= notaMinima) listaAlunosComMediaEsperada.push(aluno)
+    }
+
+    console.log(listaAlunosComMediaEsperada);
 }

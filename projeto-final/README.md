@@ -1,5 +1,11 @@
 # Aplicação para gerenciar alunos
 
+## Deploy do Projeto Final
+
+* [Gerenciador Escolar](https://gerenciadorescolar.netlify.app/)
+
+## Requisitos
+
 A escola Lógica Sempre precisa de um módulo em seu sistema para gerenciar seus alunos. Sendo assim as seguintes funcionalidades precisarão ser desenvolvidas
 
 - Cadastrar turma contendo
@@ -54,3 +60,7 @@ Como opcional adicionar a funcionalidade de classificação nos alunos, onde ser
 Alunos com classificação A e D não podem estar na mesma turma com alunos com classificação B e C e vise-versa.
 
 Observação: Essa é uma funcionalidade completamente opcional e pode ser adicionada após a realização dos requisitos principais.
+
+## Screenshots
+
+![App Screenshot](./screenshot.png)

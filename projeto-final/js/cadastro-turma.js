@@ -80,6 +80,14 @@ function Aluno (nome, sobrenome, email, idTurma, nascimento, notas, ativo) {
     database.alunos.push(this);
 }
 
+function verificaIdade(nascimento) {
+    let [dia, mes, ano] = nascimento.split('/')
+    let anoAtual = new Date().getFullYear()
+    let idade = anoAtual - ano;
+    if(idade < 16) throw new Error('Idade minima para matricula de 16 anos')
+    return Error
+}
+
 function cadastraAluno () {
     try {
         let nome = prompt('Digite primeiro nome do aluno: ')
@@ -109,6 +117,8 @@ function cadastraAluno () {
         let nascimento = prompt(`Digite data de nascimento do aluno: \n
         Exemplo: 01/01/2023`)
         if(!nascimento) throw new Error('Data de nascimento não pode ser vazio')
+
+        verificaIdade(nascimento)
         
         let notas = prompt('Digite as notas do aluno(SEPARADO POR VIRGULA): ')
         if(!notas) throw new Error('Notas não pode ser vazio')
@@ -159,6 +169,7 @@ function atualizaDadosDoAluno(email) {
 
     try {
         for (const propriedade in alunoEncontrado) {
+            verificaIdade(alunoEncontrado.nascimento)
             if(propriedadeASerAlterada === propriedade && propriedadeASerAlterada !== 'email') {
                 alunoEncontrado[propriedade] = prompt(`Digite os dados novos de ${propriedade} do aluno ${alunoEncontrado.nome} ${alunoEncontrado.sobrenome}`)
 
@@ -183,7 +194,6 @@ function atualizaDadosDoAluno(email) {
 
     console.log(alunoEncontrado)
 }
-
 
 function atualizaTurma(idTurma) {
     try {
@@ -253,7 +263,6 @@ function mostraMediaDeNotasDoAluno(email) {
     
     console.log(`A média das notas do aluno ${aluno.nome} é ${calculaMediaDeNotasDoAluno(email)}`)
 }
-
 
 function desativaCadastroDoAluno(email) {
     const aluno = database.alunos.find(aluno => aluno.email === email)
@@ -333,11 +342,3 @@ function mostraRelatorioCompletoDeAlunos() {
         console.log(calculaMediaDeNotasDoAluno(email))
     }
 }
-
-
-/* Como opcional adicionar a funcionalidade de classificação nos alunos, onde será possível cadastrar os alunos com a seguinte classificação: A, B, C ou D. Isso implicará na forma como adicionamos novos alunos seguindo a regra:
-
-Alunos com classificação A e D não podem estar na mesma turma com alunos com classificação B e C e vise-versa.
-
-Observação: Essa é uma funcionalidade completamente opcional e pode ser adicionada após a realização dos requisitos principais. 
-*/

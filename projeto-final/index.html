@@ -1,20 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Gerenciador de Alunos</title>
 </head>
+
 <body>
     <header>
         <img src="https://lms-ada-assets.s3.sa-east-1.amazonaws.com/logo_small.svg" alt="logo">
     </header>
     <main>
         <h1 class="title">Gerenciador Escolar<h1>
-        <p class="instructions">Instruções: todas funções tem retorno no console por quesitos educacionais para prática focado na lógica de programação do projeto</p>
+                <p class="instructions">Instruções: todas funções tem retorno no console por quesitos educacionais para prática focado na lógica de programação do projeto.
+                </p>
+                <p class="instructions">Para abrir o console: <strong>Cmd + Option + J (em um Mac) ou Ctrl +Shift +J (no Windows) Ou F12</strong></p>
+                <section class="buttons-functions">
+                    <div class="container-copy">
+                        <p class="text-to-copy">cadastraTurma(idTurma, maximo)</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">cadastraAluno(nome, sobrenome, email, idTurma, nascimento, notas, ativo)
+                        </p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">removeAluno(email)</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">atualizaDadosDoAluno(email)</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">atualizaTurma(idTurma)</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostrarAlunoEspecifico(email)</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostraListaDeAlunosCompleta()</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostraQuatidadeDeTurmas()</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">calculaMediaDeNotasDoAluno(email)</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostraMediaDeNotasDoAluno(email)</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">desativaCadastroDoAluno(email)</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostraListaDeAlunosAtivos()</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostraListaDeAlunosInativos()</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostraAlunosComMediaEsperada()</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostraAlunosComMediaAbaixoDoEsperado()</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostraQuantidadeDeAlunos()</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                    <div class="container-copy">
+                        <p class="text-to-copy">mostraRelatorioCompletoDeAlunos()</p>
+                        <button class="btn-copy">Copiar</button>
+                    </div>
+                </section>
     </main>
     <script src="./js/cadastro-turma.js"></script>
+    <script src="./js/copy-app.js"></script>
 </body>
+
 </html>

@@ -13,7 +13,7 @@ Aqui você encontrará conceitos essenciais e exemplos práticos de Lógica de p
 
 ## Código Projeto Final
 
-* [View Code | Requisitos]((https://github.com/LuisBarrichello/logica-primeiro-codigo/tree/master/projeto-final))
+* [View Code | Requisitos](https://github.com/LuisBarrichello/logica-primeiro-codigo/tree/master/projeto-final)
 
 ## Seções de conteúdo
 

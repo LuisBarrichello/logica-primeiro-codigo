@@ -24,7 +24,7 @@ console.log(database.alunos);
 console.log(database.turmas);
 
 function Turma(idTurma, maximoDeAlunos) {
-    if (!new.target) return new Turma(idTurma, Aluno);
+    if (!new.target) return new Turma(idTurma, maximoDeAlunos);
 
     this.idTurma = Number(idTurma);
     this.maximoDeAlunos = Number(maximoDeAlunos);

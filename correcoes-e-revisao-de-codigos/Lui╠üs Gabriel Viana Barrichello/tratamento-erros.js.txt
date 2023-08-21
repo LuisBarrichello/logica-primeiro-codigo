@@ -1,0 +1,75 @@
+// -- INPUT do usuário
+// Recuperando dados com o prompt
+
+// Ojetivo: fazer todas validações possiveis para evitar erros no input
+let aluno = null;
+
+const recuperaDados = () => {
+
+    try {
+        const nome = prompt('Informe seu nome: ')
+        if(!nome) throw new Error('Nome não pode ser vazio')
+        
+        const turma = prompt('Informe sua turma: ', '1033')
+        const turmaN = Number(turma)
+        if(!turmaN) throw new Error('Turma não pode ser vazio')
+        
+        const notasInput = prompt('Informe suas notas separado por virgula: ')
+        if(!notasInput) throw new Error('Notas não pode ser vazio')
+
+        const notas = notasInput.split(',').map(nota => {
+
+            if(nota > 10) throw new Error('Digite um nota válida, até 10');
+
+            const notasParse = Number(nota.trim())
+            console.log(notasParse)
+            if(isNaN(notasParse)) {
+                throw new Error('Digite um número válido para a nota, separado por virgulas');
+            }
+            return notasParse;
+        }) 
+
+        return { nome, turma, notas }
+
+    } catch (error) {
+        alert('Erro: ' + error.message)
+        return recuperaDados();
+    }
+}
+
+// Usuário cancelou, não informou os dados:
+while(!aluno){ // enquanto for true
+    const data = recuperaDados()
+
+    if(data) {
+        aluno = {
+            nome: data.nome,
+            turma: data.turma,
+            // notas: notas.split(',').map((nota) => Number(nota)) // point full
+            notas: data.notas // point free
+        }
+    } else {
+        break; // Encerrar o loop se o usuário cancelar
+    }
+}
+
+console.table(aluno)
+
+/**
+ * 
+ * Considerações
+ * 
+ * Modularização: As diferentes partes do processo de recuperação de dados são encapsuladas em funções, tornando o código mais organizado e modular.
+ * Tratamento de Erros: O uso de blocos try...catch ajuda a capturar e tratar possíveis erros de entrada, proporcionando uma experiência mais suave ao usuário.
+ * Recuperação de Dados em Loop: A abordagem de usar um loop while para garantir que o usuário forneça dados válidos é uma maneira eficaz de lidar com entradas inválidas.
+ * Feedback ao Usuário: O uso de alert para exibir mensagens de erro ajuda o usuário a entender o que aconteceu de errado e o que é esperado.
+ * Uso de Objetos Literais: O retorno dos dados em objetos literais (ex: { nome, turma, notas }) é uma abordagem elegante para retornar múltiplos valores.
+ * 
+ * Sugestão
+ * 
+ * Validações Incompletas: Algumas validações estão ausentes ou não estão abordando todos os casos, como o cancelamento do prompt.
+ * Não Considera Entradas de Espaço: As entradas de nome e turma não são tratadas quanto a espaços em branco ou entradas vazias.
+ * 
+ * No mais, excelente entrega, parabéns =)
+ * 
+ */

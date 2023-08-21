@@ -1,0 +1,20 @@
+/**
+ * 
+ * Considerações projeto final
+ * 
+ * Divisão Modular: O código está dividido em várias funções que executam tarefas específicas. Isso ajuda a manter o código organizado e fácil de entender.
+ * Uso de Objetos: O código utiliza objetos (Turma e Aluno) para representar as entidades do sistema. Isso ajuda a encapsular os dados e o comportamento relacionado.
+ * Validações de Entrada: O código realiza validações de entrada em várias partes, como ao cadastrar turmas, cadastrar alunos e atualizar dados. Isso ajuda a garantir a integridade dos dados inseridos.
+ * Tratamento de Exceções: O código utiliza blocos try-catch para capturar e tratar exceções, exibindo mensagens de erro e evitando falhas abruptas.
+ * Mensagens para o usuário claras
+ * Uso de Métodos de Array: O código utiliza métodos de array como find, filter e map para buscar, filtrar e transformar dados, o que é uma prática eficaz.
+ * Apresentação excelente, criando um fluxo e não deixando o usuário no escuro.
+ * 
+ * Sugestões
+ * 
+ * Falha ao Usar Classes* (não se preocupe tanto com isso tente refatorar após o módulo de Orientação a objeto): Embora você esteja usando funções construtoras para criar objetos, você pode se beneficiar do uso de classes no ES6 para encapsular ainda mais a funcionalidade e melhorar a organização.
+ * 
+ * No mais ótimo trabalho, continue assim, parabéns =)
+ * 
+ * 
+ */
